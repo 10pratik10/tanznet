@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanz Corp - Shared Business Investment Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8));
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-3px);
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Investment Model */
+        .investment-model {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .model-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .model-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .model-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .model-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .percentage {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1rem 0;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-card {
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            border: 1px solid #e8edff;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+        }
+
+        .why-choose-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 4rem;
+        }
+
+        .why-choose-text h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .why-choose-text > p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .feature-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .why-choose-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Business Types Section */
+        .business-types {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .business-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f9ff 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid #e8edff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .business-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .business-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .business-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .business-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .business-card > p {
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .business-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .business-features span {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Success Stories Section */
+        .success-stories {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .story-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+        }
+
+        .story-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .story-info h3 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .story-info p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .story-content > p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .story-metrics {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .metric {
+            text-align: center;
+            flex: 1;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .faq-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .faq-column h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #333;
+            text-align: center;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #e8edff;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8edff 100%);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(135deg, #e8edff 0%, #d8e3ff 100%);
+        }
+
+        .faq-question h4 {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 200px;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.7;
+            margin: 0;
+        } 0%, #f8f9ff 100%);
+            border: 1px solid #e8edff;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Floating particles effect */
+        .particles {
+            position: absolute;
+            width:
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Tanz Corp</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#investment">Investment</a></li>
+                        <li><a href="#why-choose">Why Choose Us</a></li>
+                        <li><a href="#business-types">Business Types</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="particles"></div>
+        <div class="container">
+            <h1>Shared Business Investment Platform</h1>
+            <p>Where entrepreneurs and investors unite to build successful businesses together</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/+918788418089" target="_blank" class="btn btn-primary">Contact on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">
+                Our innovative platform connects ambitious entrepreneurs with smart investors, creating a win-win ecosystem for business growth and wealth creation.
+            </p>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Entrepreneur Investment</h3>
+                    <p>Business owners invest 51% of the required capital, maintaining majority control while sharing the opportunity with investors.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Investor Participation</h3>
+                    <p>Multiple investors contribute the remaining 49% with a minimum 5% investment, becoming official shareholders in the business venture.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Profit Distribution</h3>
+                    <p>After a 6-month lock-in period, monthly profits are distributed to all shareholders based on their investment percentage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="investment" class="investment-model">
+        <div class="container">
+            <h2 class="section-title">Investment Structure</h2>
+            
+            <div class="model-grid">
+                <div class="model-card">
+                    <h3>Entrepreneur</h3>
+                    <div class="percentage">51%</div>
+                    <p>Majority ownership and control</p>
+                    <ul style="text-align: left; margin-top: 2rem; color: #666;">
+                        <li>Maintains business control</li>
+                        <li>Makes key decisions</li>
+                        <li>Receives majority profit share</li>
+                        <li>Gets Tanz Corp branding support</li>
+                    </ul>
+                </div>
+                
+                <div class="model-card">
+                    <h3>Investors</h3>
+                    <div class="percentage">49%</div>
+                    <p>Shared ownership among multiple investors</p>
+                    <ul style="text-align: left; margin-top: 2rem; color: #666;">
+                        <li>Minimum 5% investment per investor</li>
+                        <li>Official shareholder status</li>
+                        <li>Monthly profit distributions</li>
+                        <li>Exclusive partner discounts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section id="why-choose" class="why-choose">
+        <div class="container">
+            <h2 class="section-title">Why Choose Tanz Corp?</h2>
+            <div class="why-choose-content">
+                <div class="why-choose-text">
+                    <h3>Revolutionizing Business Investment</h3>
+                    <p>At Tanz Corp, we're creating a unique ecosystem that bridges the gap between ambitious entrepreneurs and smart investors. Our platform isn't just about funding - it's about building a community of success.</p>
+                    
+                    <div class="feature-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">✅</div>
+                            <div>
+                                <h4>Low Investment, Real Ownership</h4>
+                                <p>Anyone can become a shareholder in real businesses like hotels, garages, and shops with a minimum 5% investment—no need for large capital.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">🛡️</div>
+                            <div>
+                                <h4>Secure Investments</h4>
+                                <p>All investments are legally documented with proper shareholding agreements and regular financial audits.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">📈</div>
+                            <div>
+                                <h4>Monthly Profit Sharing</h4>
+                                <p>After a 6-month lock-in period, investors receive a share of monthly profits directly based on their ownership percentage.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">🌐</div>
+                            <div>
+                                <h4>Network Power</h4>
+                                <p>Access to our exclusive network of businesses, creating cross-promotional opportunities and customer referrals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="why-choose-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Businesses Target (5 Years)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">₹500Cr+</div>
+                        <div class="stat-label">Projected Investment</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">25-35%</div>
+                        <div class="stat-label">Expected Annual ROI</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Jobs to be Created</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Types Section -->
+    <section id="business-types" class="business-types">
+        <div class="container">
+            <h2 class="section-title">Business Categories We Fund</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto 4rem;">
+                We support diverse business ventures across multiple industries, each offering unique investment opportunities and growth potential.
+            </p>
+            
+            <div class="business-grid">
+                <div class="business-card">
+                    <div class="business-icon">🏨</div>
+                    <h3>Hospitality</h3>
+                    <p>Hotels, restaurants, cafes, and food service businesses with proven market demand and scalable operations.</p>
+                    <div class="business-features">
+                        <span>High foot traffic locations</span>
+                        <span>Established customer base</span>
+                        <span>Multiple revenue streams</span>
+                    </div>
+                </div>
+                
+                <div class="business-card">
+                    <div class="business-icon">🔧</div>
+                    <h3>Automotive Services</h3>
+                    <p>Car repair shops, service centers, spare parts businesses, and automotive maintenance facilities.</p>
+                    <div class="business-features">
+                        <span>Essential services</span>
+                        <span>Recurring customers</span>
+                        <span>Growing market demand</span>
+                    </div>
+                </div>
+                
+                <div class="business-card">
+                    <div class="business-icon">🛍️</div>
+                    <h3>Retail & E-commerce</h3>
+                    <p>Physical stores, online marketplaces, specialty shops, and consumer goods businesses.</p>
+                    <div class="business-features">
+                        <span>Diverse product range</span>
+                        <span>Online-offline integration</span>
+                        <span>Scalable operations</span>
+                    </div>
+                </div>
+                
+                <div class="business-card">
+                    <div class="business-icon">💼</div>
+                    <h3>Professional Services</h3>
+                    <p>Consulting firms, agencies, educational services, and skill-based professional businesses.</p>
+                    <div class="business-features">
+                        <span>High-margin services</span>
+                        <span>Expertise-based value</span>
+                        <span>Scalable business model</span>
+                    </div>
+                </div>
+                
+                <div class="business-card">
+                    <div class="business-icon">🏭</div>
+                    <h3>Manufacturing</h3>
+                    <p>Small to medium manufacturing units, processing facilities, and production businesses.</p>
+                    <div class="business-features">
+                        <span>Consistent demand</span>
+                        <span>Bulk order potential</span>
+                        <span>Export opportunities</span>
+                    </div>
+                </div>
+                
+                <div class="business-card">
+                    <div class="business-icon">🎯</div>
+                    <h3>Emerging Sectors</h3>
+                    <p>Technology startups, green energy, health & wellness, and innovative business models.</p>
+                    <div class="business-features">
+                        <span>High growth potential</span>
+                        <span>Innovation-driven</span>
+                        <span>Future-ready sectors</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-container">
+                <div class="faq-column">
+                    <h3>For Entrepreneurs</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What types of businesses can apply for funding?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We will fund businesses across various sectors including hospitality, retail, automotive services, manufacturing, and professional services. The key criteria are proven market demand, scalability potential, and strong business fundamentals. Our platform is designed to support ventures with growth potential.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How much funding can I get for my business?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Funding amounts will vary based on your business needs and investor interest. We're planning to fund businesses from ₹5 lakhs to ₹5 crores. You need to invest 51% of the total requirement yourself to maintain majority control.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What ongoing support do you provide?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Beyond funding, we will provide comprehensive business mentorship, marketing support through our "Powered by Tanz Corp" badge program, networking opportunities, and access to our growing business ecosystem for cross-promotions and collaboration.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="faq-column">
+                    <h3>For Investors</h3>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What is the minimum investment amount?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The minimum investment is 5% of the total business funding requirement. This typically ranges from ₹25,000 to ₹10 lakhs depending on the business size and requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>How are returns calculated and distributed?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Returns are distributed monthly based on actual business profits and your investment percentage. After the 6-month lock-in period, you receive your share of profits every month along with detailed financial reports.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>What legal protections do investors have?</h4>
+                            <span class="faq-toggle">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>All investments are protected through legal shareholder agreements, regular financial audits, and transparent reporting. You become an official shareholder with legal rights and protections under Indian corporate law.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Platform Benefits</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏷️</div>
+                    <h3>"Powered by Tanz Corp" Badge</h3>
+                    <p>Every partner business receives our prestigious badge, providing instant credibility and marketing support to attract more customers.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Monthly Profit Sharing</h3>
+                    <p>Transparent monthly profit distribution based on your investment percentage, ensuring steady returns for all shareholders.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Exclusive Investor Discounts</h3>
+                    <p>Investors enjoy special discounts and offers across all Tanz Corp powered businesses - hotels, garages, shops, and services.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>Network Effect</h3>
+                    <p>Access to a growing network of successful businesses and entrepreneurs, creating opportunities for collaboration and growth.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Transparent Operations</h3>
+                    <p>Regular financial reporting and updates ensure all shareholders stay informed about their investment performance.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Low Entry Barrier</h3>
+                    <p>Start investing with just 5% minimum investment, making business ownership accessible to more people.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Join the Platform?</h2>
+            <p>Whether you're an entrepreneur looking for investors or an investor seeking opportunities, Tanz Corp connects you with the right partners.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get Started Today</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tanz Corp</h3>
+                    <p>Empowering entrepreneurs and investors to build successful businesses together through our innovative shared investment platform.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>For Entrepreneurs</h3>
+                    <p>Ready to scale your business?</p>
+                    <p>Email: tanzcorp.in@gmail.com
+                    <p>Phone: +91 878841089</p>
+                    <a href="https://wa.me/+918788418089" target="_blank" style="color: #25D366; text-decoration: none; font-weight: bold;">
+                        📱 WhatsApp: +91 8788418089
+                    </a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>For Investors</h3>
+                    <p>Looking for investment opportunities?</p>
+                    <p>Email: tanzcorp.in@gmail.com</p>
+                    <p>Phone: +918788418089</p>
+                    <a href="https://wa.me/+918788418089" target="_blank" style="color: #25D366; text-decoration: none; font-weight: bold;">
+                        📱 WhatsApp: +91 8788418089
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tanz Corp. All rights reserved. | Powering the future of shared business investment.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 30px rgba(0, 0, 0, 0.15)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.step, .model-card, .benefit-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add hover effects for interactive elements
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // FAQ Functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Add click effect to cards
+        document.querySelectorAll('.business-card, .story-card, .benefit-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
